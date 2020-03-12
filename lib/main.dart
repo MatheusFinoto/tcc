@@ -1,4 +1,4 @@
-import 'package:app_tcc/view/HomeScreen.dart';
+import 'package:app_tcc/view/HomePage.dart';
 import 'package:app_tcc/view/IntroducaoPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

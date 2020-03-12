@@ -1,4 +1,4 @@
-import 'package:app_tcc/view/HomeScreen.dart';
+import 'package:app_tcc/view/HomePage.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 

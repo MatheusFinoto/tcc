@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
       ImoveisData("Rua de casa","5", "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "listaFotos", "23.00", "24.00", "Casa", "Sala, Cozinha, Copa, 2 Suits", "Aluguel"),
       ImoveisData("Rua de casa","5", "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "listaFotos", "23.00", "24.00", "Casa", "Sala, Cozinha, Copa, 2 Suits", "Aluguel"),
     ];
-
     return  listImoveisData;
 
   }
