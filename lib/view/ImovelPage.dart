@@ -8,16 +8,16 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ImovelTab extends StatefulWidget {
+class ImovelPage extends StatefulWidget {
   ImoveisData imovelData;
 
-  ImovelTab(this.imovelData);
+  ImovelPage(this.imovelData);
 
   @override
-  _ImovelTabState createState() => _ImovelTabState();
+  _ImovelPageState createState() => _ImovelPageState();
 }
 
-class _ImovelTabState extends State<ImovelTab> {
+class _ImovelPageState extends State<ImovelPage> {
   var _scroolViewController = ScrollController();
   Completer<GoogleMapController> _controller = Completer();
 

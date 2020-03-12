@@ -1,6 +1,5 @@
 import 'package:app_tcc/view/HomeScreen.dart';
-import 'package:app_tcc/web/HomeScreen.dart';
-import 'package:app_tcc/web/LoginScreen.dart';
+import 'package:app_tcc/view/IntroducaoPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen()
+      home: IntrotucaoPage()
     );
   }
 }
@@ -33,13 +32,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
 
   Future getPlatform()async{
-    if(Theme.of(context).platform == TargetPlatform.android || Theme.of(context).platform == TargetPlatform.iOS){
-
-      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomeScreen()));
-
-    }else{
-      return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> LoginScreenWEB()));
-    }
+    return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomePage()));
   }
 
   @override

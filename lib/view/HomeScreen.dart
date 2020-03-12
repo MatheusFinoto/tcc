@@ -1,20 +1,18 @@
-import 'dart:convert';
-
 import 'package:app_tcc/deafult_widgets/DefaultHorizontalList.dart';
 import 'package:app_tcc/deafult_widgets/DefaultListPopular.dart';
 import 'package:app_tcc/model/ImoveisData.dart';
-import 'package:app_tcc/view/ImovelTab.dart';
+import 'package:app_tcc/view/ImovelPage.dart';
 import 'package:app_tcc/view/MapsPage.dart';
-import 'package:app_tcc/view/PerfilUsuario.dart';
+import 'package:app_tcc/view/PerfilPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
 
   Future<List<ImoveisData>> getImoveisData()async{
     List<ImoveisData> listImoveisData = [
@@ -60,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.person, color: Colors.black,),
             onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PerfilUsuario()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PerfilPage()));
             },
           ),
         ],
@@ -175,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                            onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImovelTab(snapshot.data[index])));},
+                            onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImovelPage(snapshot.data[index])));},
                           );
                         }
                     );
