@@ -1,3 +1,4 @@
+import 'package:app_tcc/utils/Preferencias.dart';
 import 'package:app_tcc/view/HomePage.dart';
 import 'package:app_tcc/view/IntroducaoPage.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: IntrotucaoPage()
+      home: Splash()
     );
   }
 }
@@ -30,9 +31,16 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  Preferencias preferencias = Preferencias();
 
   Future getPlatform()async{
-    return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomePage()));
+    var intro = await preferencias.getIntro();
+
+    if(intro == false){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IntrotucaoPage()));
+    }else{
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    }
   }
 
   @override
@@ -41,8 +49,15 @@ class _SplashState extends State<Splash> {
       body: FutureBuilder(
         future: getPlatform(),
         builder: (context, snapshot){
+          switch(snapshot.connectionState){
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator(),);
+            case ConnectionState.active:
+            case ConnectionState.done:
+          }
           return Center(
-            child: CircleAvatar(maxRadius: 100, backgroundColor: Colors.red,),
+            child: CircleAvatar(maxRadius: 100, backgroundColor: Colors.white,),
           );
         },
       ),

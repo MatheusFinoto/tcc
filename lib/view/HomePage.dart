@@ -1,11 +1,14 @@
 import 'package:app_tcc/deafult_widgets/DefaultHorizontalList.dart';
 import 'package:app_tcc/deafult_widgets/DefaultListPopular.dart';
 import 'package:app_tcc/model/ImoveisData.dart';
+import 'package:app_tcc/utils/Preferencias.dart';
 import 'package:app_tcc/view/ImovelPage.dart';
 import 'package:app_tcc/view/MapsPage.dart';
 import 'package:app_tcc/view/PerfilPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'LoginPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Preferencias preferencias = Preferencias();
 
   Future<List<ImoveisData>> getImoveisData()async{
     List<ImoveisData> listImoveisData = [
@@ -39,6 +44,16 @@ class _HomePageState extends State<HomePage> {
     return  newListPopular;
   }
 
+  validaLogin()async{
+    var logado = await preferencias.getLogado();
+
+    if(logado == false){
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+    }else{
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => PerfilPage()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +71,7 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             icon: Icon(Icons.person, color: Colors.black,),
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => PerfilPage()));
-            },
+            onPressed: validaLogin,
           ),
         ],
       ),
