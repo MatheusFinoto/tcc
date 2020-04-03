@@ -1,3 +1,4 @@
+import 'package:app_tcc/view/CadastroUsuarioPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    /*Row(
+                    Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,15 +45,15 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
-                    ),*/
+                      height: 50,
+                    ),
                     Row(
                       children: <Widget>[
-                        Text("Entre na sua conta", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),)
+                        Text("Entre na sua conta", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
                       ],
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 10,
                     ),
                     TextField(
                       keyboardType: TextInputType.emailAddress,
@@ -146,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: GestureDetector(
                           child: Text("Ainda não possui uma conta? Cadastre-se", style: TextStyle(color: Color(0xff195073)),),
                           onTap: (){
-
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => CadastroUsuarioPage()));
                           },
                         )
                     ),
