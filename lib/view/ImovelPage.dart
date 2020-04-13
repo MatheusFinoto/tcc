@@ -63,7 +63,7 @@ class _ImovelPageState extends State<ImovelPage> {
     final url = 'http://www.google.com.br/maps/dir/$minhaLat,$minhalong/$lat,$long';
     if (await canLaunch(url)) {
       await launch(url);
-    } else {
+    } else { 
       throw 'Could not launch $url';
     }
   }
