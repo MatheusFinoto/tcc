@@ -19,6 +19,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
     super.initState();
   }
 
+  File file;
   int passoAtual = 0;
 
   String fotoSelecionada;
@@ -62,6 +63,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       fotoSelecionada =  image.path;
+      file = image;
     });
   }
 
@@ -69,10 +71,11 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       fotoSelecionada =  image.path;
+      file = image;
     });
   }
 
-  cadatraUsuario()async{
+  _cadatraUsuario()async{
     String nome = nomeController.text;
     String sobrenome = sobrenomeController.text;
     String celular = celularController.text;
@@ -82,8 +85,13 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
     String senha = senhaController.text;
 
     String nomeCompleto = "$nome $sobrenome";
-    File photo = File(fotoSelecionada);
-    String foto = base64Encode(photo.readAsBytesSync());
+    String foto = "";
+    //File photo = File(fotoSelecionada);
+    if(file != null){
+      setState(() {
+        foto = base64Encode(file.readAsBytesSync());
+      });
+    }
 
 
     var body = jsonEncode(
@@ -91,7 +99,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
           "name":nomeCompleto,
           "cpf":cpfCnpj,
           "cel":celular,
-          "telefone":telefone,
+          "tel":telefone,
           "email":email,
           "password":senha,
           "image": foto
@@ -101,8 +109,8 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
     print(body);
 
     var data = await http.post(
-      "https://emob-teste.herokuapp.com/customers",
-      headers: {"content-Type": "application/json"},
+        "https://emob-app.herokuapp.com/customers",
+        headers: {"Content-Type":"application/json"},
       body: body
     );
 
@@ -174,7 +182,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
 
                   if(this.passoAtual == 3){
                     print("passo 4");
-                    cadatraUsuario();
+                    _cadatraUsuario();
                   }
                 }
               });

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:app_tcc/view/CadastroUsuarioPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +11,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController(text: "iranildo.oliveralinx@gmail.com");
+  TextEditingController senhaController = TextEditingController(text: "123456");
+
+  _login()async{
+    var email = emailController.text;
+    var senha = senhaController.text;
+
+    String body = jsonEncode({"email":email, "password":senha});
+    print(body);
+    var data = await http.post(
+        "https://emob-app.herokuapp.com/customers/login",
+        headers: {"Content-Type":"application/json"},
+        body: body
+    );
+    var resposta = jsonDecode(data.body);
+    print(resposta.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,26 +77,15 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     TextField(
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: Colors.black,
                       cursorWidth: 0.7,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "E-mail",
+                        border: InputBorder.none,
                         prefixIcon: Icon(Icons.email, color: Colors.black,),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            color: Colors.black
-                          )
-                        ),
-                        focusedBorder:OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                                color: Colors.black
-                            )
-                        ),
                       ),
                     ),
 
@@ -84,26 +94,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     TextField(
-                      keyboardType: TextInputType.emailAddress,
+                      controller: senhaController,
+                      keyboardType: TextInputType.text,
                       cursorColor: Colors.black,
                       cursorWidth: 0.7,
+                      obscureText: true,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                       decoration: InputDecoration(
-                        labelText: "Senha",
-                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "Senha",
+                        border: InputBorder.none,
                         prefixIcon: Icon(Icons.vpn_key, color: Colors.black,),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                                color: Colors.black
-                            )
-                        ),
-                        focusedBorder:OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                                color: Colors.black
-                            )
-                        ),
                       ),
                     ),
                     SizedBox(
@@ -125,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                     
                    Center(
                      child: GestureDetector(
+                       onTap: _login,
                        child: Container(
                          width: 150,
                          height: 50,
