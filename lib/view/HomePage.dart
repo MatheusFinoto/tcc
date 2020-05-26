@@ -7,8 +7,8 @@ import 'package:app_tcc/view/MapsPage.dart';
 import 'package:app_tcc/view/PerfilPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Login/LoginPage.dart';
 
-import 'LoginPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: Colors.black, width: 0.1),
+                                  //border: Border.all(color: Colors.black, width: 0.1),
                                   color: Colors.white
                               ),
                               margin: EdgeInsets.all(4),

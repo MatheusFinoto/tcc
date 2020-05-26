@@ -43,24 +43,29 @@ class _SplashState extends State<Splash> {
     }
   }
 
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2),(){
+      getPlatform();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: getPlatform(),
-        builder: (context, snapshot){
-          switch(snapshot.connectionState){
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator(),);
-            case ConnectionState.active:
-            case ConnectionState.done:
-          }
-          return Center(
-            child: CircleAvatar(maxRadius: 100, backgroundColor: Colors.white,),
-          );
-        },
-      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(maxRadius: 100, backgroundColor: Colors.white,),
+            SizedBox(height: 20,),
+            CircularProgressIndicator()
+          ],
+        )
+      )
     );
   }
 }

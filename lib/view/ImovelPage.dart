@@ -83,10 +83,12 @@ class _ImovelPageState extends State<ImovelPage> {
               expandedHeight: MediaQuery.of(context).size.height * 0.4,
               pinned: false,
               flexibleSpace: FlexibleSpaceBar(
-                background: CarouselSlider(
-                  autoPlay: true,
-                  viewportFraction: 1.0,
-                  aspectRatio: MediaQuery.of(context).size.aspectRatio,
+                  background: CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    viewportFraction: 1.0,
+                    aspectRatio: MediaQuery.of(context).size.aspectRatio,
+                  ),
                   items: widget.imovelData.fotos.map<Widget>(
                         (url) {
                       return Container(
