@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:math';
+import 'package:http/http.dart' as http;
 
 import 'package:mobx/mobx.dart';
 
@@ -47,6 +49,19 @@ abstract class _LoginStore with Store {
   @action
   Future<void> login()async{
     carregando = true;
+
+    var email;
+    var senha;
+
+    String body = jsonEncode({"email":email, "password":senha});
+    print(body);
+    var data = await http.post(
+        "https://emob-app.herokuapp.com/customers/login",
+        headers: {"Content-Type":"application/json"},
+        body: body
+    );
+    var resposta = jsonDecode(data.body);
+    print(resposta.toString());
 
     //processar
     await Future.delayed(Duration(seconds: 2));

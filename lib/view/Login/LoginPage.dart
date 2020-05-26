@@ -30,18 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _login()async{
-    var email;
-    var senha;
 
-    String body = jsonEncode({"email":email, "password":senha});
-    print(body);
-    var data = await http.post(
-        "https://emob-app.herokuapp.com/customers/login",
-        headers: {"Content-Type":"application/json"},
-        body: body
-    );
-    var resposta = jsonDecode(data.body);
-    print(resposta.toString());
   }
 
   @override
